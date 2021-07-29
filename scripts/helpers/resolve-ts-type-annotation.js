@@ -11,7 +11,7 @@ module.exports = (typeAnnotation) => {
       case 'TSTypeReference':
         const { name } = _typeAnnotation.typeName;
         if (_typeAnnotation.typeParameters && _typeAnnotation.typeParameters.params.length) {
-          return `${name}<${_typeAnnotation.typeParameters.params.map(t => fn(t)).join(',')}>`
+          return `${name}\\<${_typeAnnotation.typeParameters.params.map(t => fn(t)).join(',')}\\>`
         }
         return `TSTypeReference: ${name}`;
       // 字符串类型
@@ -25,18 +25,23 @@ module.exports = (typeAnnotation) => {
         return 'boolean';
       // 普通多个类型
       case 'TSUnionType':
-        return _typeAnnotation.types.map(t => fn(t));
+        return _typeAnnotation.types.map(t => fn(t)).join('\\|');
       // 处理函数
       case 'TSFunctionType':
         return 'function';
       // 处理对象
       case 'TSTypeLiteral':
         return 'object';
+      case 'TSObjectKeyword':
+        return 'object';
       // 处理数组
       case 'TSTupleType':
         return `[${_typeAnnotation.elementTypes.map(t => fn(t)).join(',')}]`;
+      // 处理字面量声明
+      case 'TSLiteralType':
+        return `"${_typeAnnotation.literal.value}"`;
       default:
-        return 'undefined';
+        return 'unregistered';
     }
   }
 

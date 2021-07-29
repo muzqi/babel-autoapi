@@ -1,37 +1,46 @@
 /**
- * A interface
- * @author muzi
+ * ParserOptions
  */
-interface BarI {
-  name?: string;  // test
-                  // 托尔斯泰
-  age: number | string;
-  readonly id: string;
-  [propName: string]: any;
+export interface ParserOptionsI {
+  sourceType?: 'unambiguous' | 'script' | 'module', // 编译类型
+  plugins?: ['typescript' | 'jsx'];                 // 插件引用
 }
 
 /**
- * Fn
- * @param age 年龄
- * @param name 名称
- * @return 无
- * @example fn(18, 'muzi');
+ * @babel/parser
+ * @param sourceCode     源码字符串
+ * @param parserOptions  配置项
+ * @return 响应AST对象
+ * @example
+ * babelParser('console.log("hello babel")');
  */
-interface Fn {
-  (age: number, name?: string): void;
+export interface BabelParser {
+  (sourceCode: string, parserOptions?: ParserOptionsI): object;
 }
 
 /**
- * 定义名称
- * @author muzi
- * @example test
+ * Visitor
  */
-type Name = string | number;
+export interface VisitorI {
+  TSTypeAliasDeclaration: (path: any) => void; // TSTypeAliasDeclaration
+};
 
 /**
- * 名字
- * @param name 1
- * @return void
- * @author muzi
+ * 抽象语法树
+ * https://astexplorer.net/
  */
-type SayHi = (name: Name) => void;
+export type AST = object;
+
+/**
+ * @babel/traverse
+ * @param ast      AST语法树
+ * @param visitor  遍历函数
+ * @return 无响应
+ * @example
+ * babelTraverse(ast, {
+ *  TSTypeAliasDeclaration(path) {
+ *    // ...
+ *  },
+ * });
+ */
+export type BabelTraverse = (ast: AST, visitor: VisitorI) => void;

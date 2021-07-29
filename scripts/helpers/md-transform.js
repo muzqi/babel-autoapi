@@ -1,5 +1,3 @@
-const resolveCharacters = (str) => str.replace(/\|/g, '/');
-
 /**
  * 处理描述信息
  */
@@ -26,7 +24,7 @@ const resolveTableDescription = (descriptions) => {
   if (!descriptions || !descriptions.length) return '';
 
   let md = '';
-  descriptions.map(d => md += `${resolveCharacters(d)}<br/>`);
+  descriptions.map(d => md += `${d}<br/>`);
   return md;
 }
 
@@ -44,7 +42,7 @@ const resolveParameters = (tags, level = '###', title = '参数') => {
 
   // 处理参数描述
   parameters.map(d => {
-    md += `|\`${d.name}\`|${d.type ? resolveCharacters(d.type) : '未知'}|${typeof d.optional === 'boolean' ? !d.optional : '未知'}|${typeof d.readonly === 'boolean' ? d.readonly : '未知'}|${resolveTableDescription(d.description)}|\n`
+    md += `|\`${d.name}\`|${d.type ? d.type : '未知'}|${typeof d.optional === 'boolean' ? !d.optional : '未知'}|${typeof d.readonly === 'boolean' ? d.readonly : '未知'}|${resolveTableDescription(d.description)}|\n`
   });
 
   return md;
@@ -116,7 +114,7 @@ const resolveFunction = (data, level = '##', type = 'Function') => {
         returns.map(d => {
           md += `\n\n|描述|类型|\n`;
           md += `|---|---|\n`;
-          md += `|${resolveTableDescription(d.description)}|${resolveCharacters(d.type)}|\n`
+          md += `|${resolveTableDescription(d.description)}|${d.type}|\n`
         });
       }
 
