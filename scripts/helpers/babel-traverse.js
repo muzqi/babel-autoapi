@@ -184,6 +184,8 @@ module.exports = (sourceCode) => {
       }
 
       docs.push(functionInfo);
+
+      path.skip();
     },
     // 处理声明的函数
     VariableDeclaration(path) {
@@ -203,6 +205,7 @@ module.exports = (sourceCode) => {
             type: 'arrow-function',
             ...functionInfo(_path),
           });
+          _path.skip();
         },
 
         FunctionExpression(_path) {
@@ -210,8 +213,11 @@ module.exports = (sourceCode) => {
             type: 'function',
             ...functionInfo(_path),
           });
+          _path.skip();
         },
       });
+
+      path.skip();
     },
     // 处理 Class
     ClassDeclaration(path) {

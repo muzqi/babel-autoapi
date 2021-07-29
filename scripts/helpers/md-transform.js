@@ -1,3 +1,5 @@
+const resolveCharacters = (str) => str.replace(/\|/g, '/');
+
 /**
  * 处理描述信息
  */
@@ -6,10 +8,14 @@ const resolveDescription = (descriptions) => {
 
   let md = '\n';
   descriptions.map((d, i) => {
-    if (descriptions.length - 1 === i) {
-      md += `描述：${d}\n`;
+    if (descriptions.length > 1) {
+      if (i === 0) {
+        md += `描述：\n\n${d}\n\n`;
+      } else {
+        md += d;
+      }
     } else {
-      md += `描述：${d}\n\n`;
+      md += `描述：${d}`
     }
   });
 
@@ -20,7 +26,7 @@ const resolveTableDescription = (descriptions) => {
   if (!descriptions || !descriptions.length) return '';
 
   let md = '';
-  descriptions.map(d => md += `${d}<br/>`);
+  descriptions.map(d => md += `${resolveCharacters(d)}<br/>`);
   return md;
 }
 
@@ -38,10 +44,8 @@ const resolveParameters = (tags, level = '###', title = '参数') => {
 
   // 处理参数描述
   parameters.map(d => {
-    md += `|\`${d.name}\`|${d.type ? d.type : '未知'}|${typeof d.optional === 'boolean' ? !d.optional : '未知'}|${typeof d.readonly === 'boolean' ? d.readonly : '未知'}|${resolveTableDescription(d.description)}|\n`
+    md += `|\`${d.name}\`|${d.type ? resolveCharacters(d.type) : '未知'}|${typeof d.optional === 'boolean' ? !d.optional : '未知'}|${typeof d.readonly === 'boolean' ? d.readonly : '未知'}|${resolveTableDescription(d.description)}|\n`
   });
-
-  md += `\n<br>\n`;
 
   return md;
 }
@@ -112,8 +116,7 @@ const resolveFunction = (data, level = '##', type = 'Function') => {
         returns.map(d => {
           md += `\n\n|描述|类型|\n`;
           md += `|---|---|\n`;
-          md += `|${resolveTableDescription(d.description)}|${d.type}|\n`
-          md += `\n<br/>\n`;
+          md += `|${resolveTableDescription(d.description)}|${resolveCharacters(d.type)}|\n`
         });
       }
 
@@ -197,6 +200,8 @@ const resolveTsInterface = (data) => {
       if (data.tags && data.tags.length) {
         md += resolveParameters(data.tags);
       }
+
+      md += `\n<br/>\n`;
       break;
     case 'ts-interface-function':
       md += resolveFunction(data, '##', 'Interface');
@@ -229,39 +234,43 @@ const resolveTsType = (data) => {
   return md;
 }
 
-module.exports = (docs, merge) => {
-  // require('fs').writeFileSync(require('path').resolve(__dirname, '../../docs.json'), JSON.stringify(docs));
-
+module.exports = (docs, toc) => {
   let md = '';
 
-  if (merge) {
-    docs.map(doc => {
-      md += `\n# ${doc.filename}\n`;
+  if (toc) {
+    md += `\n\n[TOC]\n\n`;
+  }
 
-      doc.dataSource.map(d => {
-        switch (d.type) {
-          case 'function':
-          case 'arrow-function':
-            md += resolveFunction(d);
-            break;
-          case 'class':
-            md += resolveClass(d);
-            break;
-          case 'ts-interface':
-          case 'ts-interface-function':
-            md += resolveTsInterface(d);
-            break;
-          case 'ts-type':
-          case 'ts-type-function':
-            md += resolveTsType(d);
-            break;
-          default:
-            break;
-        }
-      });
+  const resolver = (doc) => {
+    md += `\n# ${doc.filename}\n`;
+
+    doc.dataSource.map(d => {
+      switch (d.type) {
+        case 'function':
+        case 'arrow-function':
+          md += resolveFunction(d);
+          break;
+        case 'class':
+          md += resolveClass(d);
+          break;
+        case 'ts-interface':
+        case 'ts-interface-function':
+          md += resolveTsInterface(d);
+          break;
+        case 'ts-type':
+        case 'ts-type-function':
+          md += resolveTsType(d);
+          break;
+        default:
+          break;
+      }
     });
-  } else {
+  }
 
+  if (Object.prototype.toString.call(docs) === '[object Array]') {
+    docs.map(doc => resolver(doc));
+  } else {
+    resolver(docs);
   }
 
   return md;

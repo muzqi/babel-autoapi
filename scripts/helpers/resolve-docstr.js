@@ -1,5 +1,30 @@
 const doctrine = require('doctrine');
 
+const resolveType = (type) => {
+  const fn = (_type) => {
+    if (_type && _type.type) {
+      switch (_type.type) {
+        case 'NameExpression':
+          return _type.name;
+        case 'NullLiteral':
+          return 'null';
+        case 'UndefinedLiteral':
+          return 'undefined';
+        case 'UnionType':
+          return _type.elements.map(e => fn(e)).join('|');
+        case 'ArrayType':
+          return `[${_type.elements.map(e => fn(e))}]`;
+        default:
+          return '未知';
+      }
+    }
+
+    return type;
+  }
+
+  return fn(type);
+}
+
 module.exports = (docstr) => {
   const docAst = doctrine.parse(docstr, { unwrap: true });
 
@@ -19,12 +44,7 @@ module.exports = (docstr) => {
       }
 
       // 处理类型
-      if (d.type && d.type.name) {
-        d.type = d.type.name.toLowerCase();
-      }
-      if (d.type && d.type.type) {
-        d.type = d.type.type;
-      }
+      d.type = resolveType(d.type);
     });
   }
 

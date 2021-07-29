@@ -1,226 +1,145 @@
 
-# class.ts
 
+[TOC]
 
-## Class A
-
-> @author: muzi<br/>
-
-描述：A 类方法
-
-
- 
-
-|属性|类型|是否必填|是否只读|描述|
-|---|---|---|---|---|
-|`name`|string|未知|未知|this is name<br/>|
-|`opt`|object|未知|未知|配置参数<br/>|
-
-<br>
-
-描述：opt 配置参数
-
-
- 
-
-|属性|类型|是否必填|是否只读|描述|
-|---|---|---|---|---|
-|`merge`|boolean|未知|未知|是否合并<br/>|
-
-<br>
-
-```javascript
-const a = new A('muzi');
-```
-
-
-### 实例属性
-
-|属性|类型|是否必填|是否只读|描述|
-|---|---|---|---|---|
-|`name`|string|未知|未知|this is name<br/>|
-|`age`|未知|未知|未知|this is age<br/>|
-
-<br>
-
-
-### 类方法
-
-
-#### Function sayHi
-
-> @author: muzi<br/>
-
-语法：**sayHi**(*name*: `string`): `void`
-
-描述：sayHi
-
-
-##### 参数
-
-|属性|类型|是否必填|是否只读|描述|
-|---|---|---|---|---|
-|`name`|string|未知|未知|名字<br/>|
-
-<br>
-
-
-##### 响应
-
-|描述|类型|
-|---|---|
-|无任何响应<br/>|void|
-
-<br/>
-
-<br>
-
-#### Function getName
-
-
-语法：**getName**(): `string`
-
-描述：获取 name
-
-
-##### 响应
-
-|描述|类型|
-|---|---|
-|name<br/>|string|
-
-<br/>
-
-
-##### 示例
-```javascript
-const a = new A();
-const name = a.getName();
-```
-
-<br>
 
 # function.ts
 
-## Function sayHi
+## Function getSearchString
 
 > @author: muzi<br/>
+> @version: 1.0.0<br/>
 
-语法：**sayHi**(*name*: `string`, *age*: `number`, *b*: `boolean`): `void`
+语法：**getSearchString**(*search*: `String`): `Object`
 
-描述：sayHi
+描述：
 
+转换查询字符串
 
-### 参数
-
-|属性|类型|是否必填|是否只读|描述|
-|---|---|---|---|---|
-|`name`|string|未知|未知|this is name<br/>|
-|`age`|number|未知|未知|this is age<br/>|
-|`b`|boolean|未知|未知|这是一个布尔值<br/>|
-
-<br>
-
-
-### 示例
-```javascript
-sayHi('muzi'); // -> muzi
-```
-
-<br>
-
-# interface.ts
-
-
-## Interface BarI
-
-> @author: muzi<br/>
-
-描述：A interface
-
+这是第二行描述
 
 ### 参数
 
 |属性|类型|是否必填|是否只读|描述|
 |---|---|---|---|---|
-|`name`|string|false|false|test<br/>托尔斯泰<br/>|
-|`age`|number,string|true|false||
-|`id`|string|true|true||
-|`propName: string`|any|true|false||
-
-<br>
-
-## Interface Fn
-
-
-语法：**Fn**(*age*: `number`, *name?*: `string`): `void`
-
-描述：Fn
-
-
-### 参数
-
-|属性|类型|是否必填|是否只读|描述|
-|---|---|---|---|---|
-|`age`|number|true|false|年龄<br/>|
-|`name`|string|false|false|名称<br/>|
-
-<br>
+|`search`|String|未知|未知|查询字符串<br/>|
 
 
 ### 响应
 
 |描述|类型|
 |---|---|
-|无<br/>|void|
-
-<br/>
+|转换后的查询字符串对象<br/>|Object|
 
 
 ### 示例
 ```javascript
-fn(18, 'muzi');
+import { getSearchString } from '@helper';
+getSearchString('?a=1&b=2'); // -> { a: '1', b: '2' }
 ```
 
 <br>
 
-
-## Type Name
-
-> @author: muzi<br/>
-
-描述：定义名称
+## Function setSearchString
 
 
-类型：string,number
+语法：**setSearchString**(*searchObj*: `Object`): `String`
 
-
-<br/>
-
-## Type Function SayHi
-
-> @author: muzi<br/>
-
-语法：**SayHi**(*name*: `TSTypeReference: Name`): `void`
-
-描述：名字
-
+描述：转换对象为查询字符串
 
 ### 参数
 
 |属性|类型|是否必填|是否只读|描述|
 |---|---|---|---|---|
-|`name`|TSTypeReference: Name|true|false|1<br/>|
-
-<br>
+|`searchObj`|Object|未知|未知|对象格式参数<br/>|
 
 
 ### 响应
 
 |描述|类型|
 |---|---|
-|void<br/>|void|
+|返回查询字符串<br/>|String|
 
-<br/>
+<br>
+
+## Function getAppLanguage
+
+
+语法：**getAppLanguage**(): 
+
+描述：获取 APP 语言
+<br>
+
+## Function timeoutPromise
+
+
+<br>
+
+## Function aesEncrypt
+
+
+<br>
+
+## Function aesDecrypt
+
+
+<br>
+
+## Function getUuid
+
+
+语法：**getUuid**(*len*: `Number`): `String`
+
+描述：生成唯一码
+
+### 参数
+
+|属性|类型|是否必填|是否只读|描述|
+|---|---|---|---|---|
+|`len`|Number|未知|未知|生成唯一码长度，默认 32<br/>|
+
+
+### 响应
+
+|描述|类型|
+|---|---|
+|uuid<br/>|String|
+
+<br>
+
+## Function judgeAppOS
+
+
+语法：**judgeAppOS**(): `String`
+
+描述：判断APP当前所属 OS 环境
+
+### 响应
+
+|描述|类型|
+|---|---|
+|ios / android / undefined<br/>|String|
+
+<br>
+
+## Function judgeAppVersion
+
+
+语法：**judgeAppVersion**(*supportVersion*: `Object|undefined`): `boolean`
+
+描述：根据支持版本，判断APP版本
+
+### 参数
+
+|属性|类型|是否必填|是否只读|描述|
+|---|---|---|---|---|
+|`supportVersion`|Object/undefined|未知|未知|{ ios: '2.2.0', android: '2.3.0' }<br/>|
+
+
+### 响应
+
+|描述|类型|
+|---|---|
+|返回布尔值，是否当前版本支持<br/>|boolean|
 
 <br>
