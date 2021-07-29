@@ -1,0 +1,20 @@
+{
+  "name": "babel-autoapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/generator": "^7.14.8",
+    "@babel/parser": "^7.14.8",
+    "@babel/traverse": "^7.14.8",
+    "@babel/types": "^7.14.8",
+    "doctrine": "^3.0.0",
+    "glob": "^7.1.7",
+    "minimist": "^1.2.5"
+  }
+}
