@@ -95,6 +95,8 @@ babelParser('console.log("hello babel")');
 
 ## Typescript
 
+**In**
+
 ```javascript
 /**
  * ParserOptions
