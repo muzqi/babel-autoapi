@@ -1,4 +1,4 @@
-# autoapi
+# babel-autoapi
 
 前端注释自动转译 md 文件。
 
