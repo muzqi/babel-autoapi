@@ -19,11 +19,11 @@ class A {
   /**
    * sayHi
    * @author muzi
-   * @param {string} name 名字
+   * @param {number} age 年龄
    * @return {void} 无任何响应
    */
-  sayHi() {
-    console.log(this.name);
+  sayHi(age) {
+    console.log(this.name, age);
   }
 
   /**

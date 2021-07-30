@@ -1,0 +1,11 @@
+{
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "launch babel autoapi",
+      "program": "${workspaceRoot}/scripts/index.js",
+      "args": ["/demo-source/*.ts", "--toc", "--out-dirname=demo-dist"]
+    }
+  ]
+}
