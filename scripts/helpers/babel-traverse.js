@@ -137,7 +137,7 @@ module.exports = (sourceCode) => {
             title: 'param',              // 属性类型
             name: '',                    // 属性名称
             type: '',                    // 属性类型
-            description: [],            // 属性描述
+            description: [],             // 属性描述
             optional: !!d.node.optional, // 属性是否可选
             readonly: !!d.node.readonly, // 属性是否只读
           }
@@ -173,6 +173,15 @@ module.exports = (sourceCode) => {
 
     // 处理普通函数
     FunctionDeclaration(path) {
+      // 不处理 Class 内部的函数方法
+      let b = false;
+      path.find((_path) => {
+        if (['ClassDeclaration', 'ClassBody', 'ClassMethod'].includes(_path.node.type)) {
+          b = true;
+        }
+      });
+      if (b) return;
+
       if (!path.node.leadingComments) return;
 
       const functionInfo = {
@@ -189,6 +198,15 @@ module.exports = (sourceCode) => {
     },
     // 处理声明的函数
     VariableDeclaration(path) {
+      // 不处理 Class 内部的函数方法
+      let b = false;
+      path.find((_path) => {
+        if (['ClassDeclaration', 'ClassBody', 'ClassMethod'].includes(_path.node.type)) {
+          b = true;
+        }
+      });
+      if (b) return;
+
       const _leadingComments = resolveLeadingComments(path);
       if (!_leadingComments) return;
 

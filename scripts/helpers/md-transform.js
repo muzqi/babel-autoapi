@@ -42,7 +42,7 @@ const resolveParameters = (tags, level = '###', title = '参数') => {
 
   // 处理参数描述
   parameters.map(d => {
-    md += `|\`${d.name}\`|${d.type ? d.type : '未知'}|${typeof d.optional === 'boolean' ? !d.optional : '未知'}|${typeof d.readonly === 'boolean' ? d.readonly : '未知'}|${resolveTableDescription(d.description)}|\n`
+    md += `|\`${d.name}\`|${d.type ? d.type : 'unknown'}|${typeof d.optional === 'boolean' ? !d.optional : 'unknown'}|${typeof d.readonly === 'boolean' ? d.readonly : 'unknown'}|${resolveTableDescription(d.description)}|\n`
   });
 
   return md;

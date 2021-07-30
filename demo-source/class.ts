@@ -10,7 +10,7 @@
  * @param {boolean} merge 是否合并
  */
 class A {
-  name: string;   // @param {string} name this is name
+  name: string;   // @param {string|'test'} name this is name
   age: number;    // this is age
   constructor(name) {
     this.name = name;
