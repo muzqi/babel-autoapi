@@ -5,7 +5,7 @@
 # Installation
 
 ```bash
-npm i autoapi
+npm i babel-autoapi
 ```
 
 # API
