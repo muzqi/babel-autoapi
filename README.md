@@ -11,16 +11,24 @@ npm i babel-autoapi
 # API
 
 ```bash
+--merge           是否合并为一个文件输出
+--out-filename    输出单一文件的文件名，默认 README，传 merge 时有效
+--out-dirname     输出多个文件的文件夹名，当不传 merge 时有效
+--toc             输出文件是否带 [TOC] 目录
+--h               输出帮助文档
+```
+
+```bash
 # 编译 src/source/*.js 中所有 js 文件
 # 编译 src/source-ts/**/*.ts 中所有 ts 文件
 # --merge 将所有文件注释合并输出到执行目录的 README.md 中
-autoapi src/source/*.js src/source-ts/**/*.ts --merge --out-filename=README
+autoapi src/source/*.js src/source-ts/**/*.ts --merge --toc --out-filename=README
 ```
 
 ```bash
 # 编译 src/helper/*.js 中所有 js 文件
 # 将每个文件注释输出到执行目录 apis 文件夹中
-autoapi src/helper/*.js --out-dirname=apis
+autoapi src/helper/*.js --toc --out-dirname=apis
 ```
 
 # Usage

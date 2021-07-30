@@ -47,7 +47,7 @@ const a = new A('muzi');
 
 > @author: muzi<br/>
 
-语法：**sayHi**(*name*: `string`): `void`
+语法：**sayHi**(*age*: `number`): `void`
 
 描述：sayHi
 
@@ -55,7 +55,7 @@ const a = new A('muzi');
 
 |属性|类型|是否必填|是否只读|描述|
 |---|---|---|---|---|
-|`name`|string|unknown|unknown|名字<br/>|
+|`age`|number|unknown|unknown|年龄<br/>|
 
 
 ##### 响应
