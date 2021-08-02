@@ -398,3 +398,21 @@ const a = new A();
 const name = a.getName();
 \`\`\`
 ```
+
+# logs
+
+> 0.0.1
+
+- 第一次发布，基本功能完善。
+
+> 0.0.2
+
+- 优化 README.md 文档；
+- 新增 -h 命令。
+
+> 0.0.3
+
+- 修复了 function 空 `leadingComments` bug；
+- 优化了 helper 代码组织结构；
+- 支持 `jsx` 类型语言；
+- README.md 新增 logs 日志记录。
