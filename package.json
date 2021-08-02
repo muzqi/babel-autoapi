@@ -1,6 +1,6 @@
 {
   "name": "babel-autoapi",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "js comment transform to md",
   "main": "./lib/index.js",
   "scripts": {

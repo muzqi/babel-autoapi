@@ -4,8 +4,8 @@
       "type": "node",
       "request": "launch",
       "name": "launch babel autoapi",
-      "program": "${workspaceRoot}/lib/index.js",
-      "args": ["/demo-source/*.ts", "--toc", "--out-dirname=demo-dist"]
+      "program": "${workspaceRoot}/lib/run.js",
+      "args": ["/demo-source/*.ts", "/demo-source/*.tsx", "--toc", "--out-dirname=demo-dist"]
     }
   ]
 }
