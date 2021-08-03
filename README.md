@@ -515,3 +515,12 @@ const name = a.getName();
 > 0.0.5
 
 - 新增 --v 命令
+
+> 0.0.6
+
+- 解决依赖包未下载的问题
+
+> 0.0.7
+
+- 增加 --version --help 命令
+- package.json 定义了 engines 环境
