@@ -108,8 +108,8 @@ autoapi --h
 --out-filename    输出单一文件的文件名，默认 README，传 merge 时有效
 --out-dirname     输出多个文件的文件夹名，当不传 merge 时有效
 --toc             输出文件是否带 [TOC] 目录
---h               输出帮助文档
---v               输出 babel-autoapi 版本号
+--help, -h        输出帮助文档
+--version, -v     输出 babel-autoapi 版本号
 ```
 
 ```bash
@@ -515,3 +515,12 @@ const name = a.getName();
 > 0.0.5
 
 - 新增 --v 命令
+
+> 0.0.6
+
+- 解决依赖包未下载的问题
+
+> 0.0.7
+
+- 增加 --version --help 命令
+- package.json 定义了 engines 环境

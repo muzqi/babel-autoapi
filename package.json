@@ -1,6 +1,6 @@
 {
   "name": "babel-autoapi",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "js comment transform to md",
   "main": "./lib/index.js",
   "scripts": {
@@ -14,9 +14,13 @@
     "javascript",
     "autoapi"
   ],
+  "engines": {
+    "node": ">=10.17.0",
+    "npm": ">=6.11.3"
+  },
   "author": "muzqi",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "@babel/generator": "^7.14.8",
     "@babel/parser": "^7.14.8",
     "@babel/traverse": "^7.14.8",
