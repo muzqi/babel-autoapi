@@ -21,7 +21,6 @@
   "author": "muzqi",
   "license": "ISC",
   "dependencies": {
-    "@babel/generator": "^7.14.8",
     "@babel/parser": "^7.14.8",
     "@babel/traverse": "^7.14.8",
     "@babel/types": "^7.14.8",
